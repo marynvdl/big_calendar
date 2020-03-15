@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include big_calendar *.css
+recursive-include big_calendar *.csv
+recursive-include big_calendar *.html
+recursive-include big_calendar *.ico
+recursive-include big_calendar *.js
+recursive-include big_calendar *.json
+recursive-include big_calendar *.md
+recursive-include big_calendar *.png
+recursive-include big_calendar *.py
+recursive-include big_calendar *.svg
+recursive-include big_calendar *.txt
+recursive-exclude big_calendar *.pyc
