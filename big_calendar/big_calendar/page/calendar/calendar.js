@@ -1,9 +1,8 @@
-frappe.require('assets/big_calendar/packages/fullcalendar/core/main.js');
-frappe.require('assets/big_calendar/packages/fullcalendar/core/main.css');
-frappe.require('assets/big_calendar/packages/fullcalendar/daygrid/main.css');
-frappe.require('assets/big_calendar/packages/fullcalendar/daygrid/main.js');
 
-
+  // frappe.require('assets/big_calendar/packages/fullcalendar/core/main.js');
+  // frappe.require('assets/big_calendar/packages/fullcalendar/core/main.css');
+  // frappe.require('assets/big_calendar/packages/fullcalendar/daygrid/main.css');
+  // frappe.require('assets/big_calendar/packages/fullcalendar/daygrid/main.js');
 
 frappe.pages['calendar'].on_page_load = function(wrapper) {
      	new MyPage(wrapper);
@@ -29,27 +28,28 @@ $(window).on("load", function(){
 
 		console.log(calendarEl);
 
+
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			plugins: [ "dayGrid" ],
-			events: frappe.call({ method:"frappe.client.get_list",
-					args:{
-						doctype: "Survey",
-						fields: ['name', 'date_start', 'date_end', 'park', 'title'],
-						limit_page_length: 1000
-					},
-					callback: function(event_list){
-						var clean_list = []
-						for (i = 0; i < event_list.message.length; i++) {
-							event = {};
-							event['title'] = event_list.message[i].title;
-							event['start'] = event_list.message[i].date_start;
-							event['end'] = event_list.message[i].date_end;
-							clean_list.push(event);
-						}
-						console.log(clean_list)
-						return clean_list;
-					}
-			})
+			// events: frappe.call({ method:"frappe.client.get_list",
+			// 		args:{
+			// 			doctype: "Survey",
+			// 			fields: ['name', 'date_start', 'date_end', 'park', 'title'],
+			// 			limit_page_length: 1000
+			// 		},
+			// 		callback: function(event_list){
+			// 			var clean_list = []
+			// 			for (i = 0; i < event_list.message.length; i++) {
+			// 				event = {};
+			// 				event['title'] = event_list.message[i].title;
+			// 				event['start'] = event_list.message[i].date_start;
+			// 				event['end'] = event_list.message[i].date_end;
+			// 				clean_list.push(event);
+			// 			}
+			// 			console.log(clean_list)
+			// 			return clean_list;
+			// 		}
+			// })
 		});
 
 

@@ -15,15 +15,18 @@ app_license = "MIT"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/big_calendar/css/big_calendar.css"
-# app_include_js = "/assets/big_calendar/js/big_calendar.js"
+app_include_css = ["/assets/big_calendar/packages/fullcalendar/core/main.css",
+                   "/assets/big_calendar/packages/fullcalendar/daygrid/main.css"]
+app_include_js = ["/assets/big_calendar/packages/fullcalendar/core/main.js",
+                  "/assets/big_calendar/packages/fullcalendar/daygrid/main.js",
+                  "/assets/big_calendar/packages/fullcalendar/interaction/main.js"]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/big_calendar/css/big_calendar.css"
 # web_include_js = "/assets/big_calendar/js/big_calendar.js"
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+page_js = {"calendar" : "public/fullcalendar/packages/fullcalendar/core/main.js"}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
@@ -126,4 +129,3 @@ app_license = "MIT"
 # override_doctype_dashboards = {
 # 	"Task": "big_calendar.task.get_dashboard_data"
 # }
-
