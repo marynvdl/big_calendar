@@ -12,6 +12,7 @@ class BigEvents(Document):
 	def validate(self):
 		self.name = self.doc + " Calendar"
 
+
 @frappe.whitelist()
 def get_events():
 	doc_list = frappe.get_list(

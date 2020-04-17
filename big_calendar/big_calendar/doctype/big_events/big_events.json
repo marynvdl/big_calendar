@@ -21,19 +21,19 @@
   {
    "description": "The name of the title field",
    "fieldname": "title",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Title"
   },
   {
    "description": "The name of the start date field",
    "fieldname": "start",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "Start"
   },
   {
    "description": "The name of the end date field",
    "fieldname": "end",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "label": "End"
   },
   {
@@ -42,7 +42,7 @@
    "label": "Color"
   }
  ],
- "modified": "2020-03-18 16:48:26.379327",
+ "modified": "2020-04-06 13:54:27.401649",
  "modified_by": "Administrator",
  "module": "Big Calendar",
  "name": "Big Events",

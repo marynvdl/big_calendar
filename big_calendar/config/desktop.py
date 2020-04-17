@@ -10,5 +10,16 @@ def get_data():
 			"icon": "octicon octicon-file-directory",
 			"type": "module",
 			"label": _("Big Calendar")
+		},
+		{
+			"module_name": 'Big Calendar',
+			"category": "Places",
+			"label": _('Big Calendar'),
+			"icon": "fa fa-calendar-check-o",
+			"type": 'link',
+			"link": '#big_cal',
+			"color": '#5d8c37',
+			'standard': 1,
+			"description": "Big Calendar"
 		}
 	]
