@@ -20,7 +20,8 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
   	single_column: true
   });
   $(".layout-main-section").append(
-    "<div id='calendar'> </div> <div id='mydraggable'> drag me please </div>"
+    "<div id='calendar'> </div>"
+		// + '<div id='mydraggable'> drag me please </div>'
   );
 }
 
@@ -37,12 +38,12 @@ frappe.pages['big_cal'].refresh = function(wrapper) {
 
   calendar.render();
 
-  new FullCalendarInteraction.Draggable(draggableEl, {
-    eventData: {
-      title: 'my event',
-      duration: '{ days: 4 }'
-    }
-  });
+  // new FullCalendarInteraction.Draggable(draggableEl, {
+  //   eventData: {
+  //     title: 'my event',
+  //     duration: '{ days: 4 }'
+  //   }
+  // });
 
 }
 

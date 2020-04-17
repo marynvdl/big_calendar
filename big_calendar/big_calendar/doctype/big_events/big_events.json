@@ -42,7 +42,7 @@
    "label": "Color"
   }
  ],
- "modified": "2020-04-06 13:54:27.401649",
+ "modified": "2020-04-17 19:39:44.162357",
  "modified_by": "Administrator",
  "module": "Big Calendar",
  "name": "Big Events",
@@ -61,7 +61,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
