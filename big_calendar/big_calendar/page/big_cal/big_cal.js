@@ -19,7 +19,7 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
   	title: 'Big Calendar',
   	single_column: true
   });
-  $(".layout-main-section").append(
+  $('div[id="page-big_cal"] .layout-main-section').append(
     "<div id='calendar'> </div>"
 		// + '<div id='mydraggable'> drag me please </div>'
   );
