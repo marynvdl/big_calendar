@@ -44,7 +44,7 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
 	    fieldtype: 'Select',
 	    fieldname: 'view',
 	    options: ['Month', 'Year'],
-			default: 'Month',
+			reqd: 1,
 	    change() {
 				if (view_field.get_value() == 'Month'){
 					view_month(park_field.get_value())
@@ -72,8 +72,14 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
 
 
 frappe.pages['big_cal'].refresh = function(wrapper) {
-	view_month('')
-	$('*[data-fieldname="year"]').hide();
+	if (view_field.get_value() == 'Month'){
+		view_month('')
+		$('*[data-fieldname="year"]').hide();
+	} else {
+		view_year(park_field.get_value(), year_field.get_value())
+		$('*[data-fieldname="year"]').show();
+	}
+
 }
 
 
