@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 from frappe.utils import (format_time, global_date_format, now, get_link_to_form, get_url_to_report)
-
+import datetime
 
 class BigEvents(Document):
 	def validate(self):
@@ -14,24 +14,36 @@ class BigEvents(Document):
 
 
 @frappe.whitelist()
-def get_events():
+def get_events(park, type):
 	doc_list = frappe.get_list(
 		"Big Events",
-		fields = ['doc', 'start', 'end', 'title', 'color']
+		fields = ['doc', 'start', 'end', 'title', 'color'],
 	)
 
 	clean_list = []
 
 	for d in doc_list:
-		print(d)
-		event_list = frappe.get_list(
-			d['doc'],
-			fields = ['name', d['title'], d['start'], d['end']]
-		)
+		if park == "":
+			event_list = frappe.get_list(
+				d['doc'],
+				fields = ['name', d['title'], d['start'], d['end']],
+			)
+		else:
+			event_list = frappe.get_list(
+				d['doc'],
+				fields = ['name', d['title'], d['start'], d['end']],
+				filters = {
+					'park':park
+				}
+			)
 
 		for item in event_list:
 			event = {}
 			event['title'] = item[d.title]
+			if item[d.start] is None:
+				item[d.start] = datetime.datetime.strptime('1000-01-01', '%Y-%m-%d')
+			if isinstance(item[d.start], datetime.datetime):
+				item[d.start] = item[d.start].date()
 			event['start'] = item[d.start]
 			event['end'] = item[d.end]
 			event['backgroundColor'] = d.color
@@ -39,7 +51,9 @@ def get_events():
 			clean_list.append(event)
 
 
-	return clean_list
+		sorted_list = sorted(clean_list, key=lambda k: k['start'])
+
+	return sorted_list
 
 
 	#Form/Survey/LWA-svy0102
