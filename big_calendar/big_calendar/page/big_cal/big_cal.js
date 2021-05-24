@@ -5,7 +5,6 @@ function get_events(park)
 		method: "big_calendar.big_calendar.doctype.big_events.big_events.get_events",
 		args: {
 			park: park,
-			type: 'Survey'
 		},
 		async: false,
 		callback: function(r) {
@@ -68,6 +67,8 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
 				view_year(park_field.get_value(), year_field.get_value())
 			}
 	});
+
+
 }
 
 

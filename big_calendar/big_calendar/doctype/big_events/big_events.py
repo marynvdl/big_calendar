@@ -14,28 +14,42 @@ class BigEvents(Document):
 
 
 @frappe.whitelist()
-def get_events(park, type):
+def get_events(park):
 	doc_list = frappe.get_list(
 		"Big Events",
-		fields = ['doc', 'start', 'end', 'title', 'color'],
+		fields = ['doc', 'start', 'end', 'title', 'color', 'park_list'],
 	)
 
 	clean_list = []
 
 	for d in doc_list:
+
 		if park == "":
 			event_list = frappe.get_list(
 				d['doc'],
 				fields = ['name', d['title'], d['start'], d['end']],
 			)
 		else:
-			event_list = frappe.get_list(
-				d['doc'],
-				fields = ['name', d['title'], d['start'], d['end']],
-				filters = {
-					'park':park
-				}
-			)
+			if d.park_list == 1:
+				event_list = frappe.db.sql("""
+					SELECT
+					    t.name,
+					    t.{title},
+					    t.{start},
+					    t.{end},
+					    tp.park
+					FROM
+					    tabTranslocation AS t
+					        INNER JOIN
+					    `tabTranslocation Park` AS tp ON t.name = tp.parent
+					WHERE tp.park = '{park}';
+				""".format(title=d['title'], start=d['start'], end=d['end'], park=park), as_dict = True)
+			else:
+				event_list = frappe.get_list(
+					d['doc'],
+					fields = ['name', d['title'], d['start'], d['end']],
+					filters = {'park': park}
+				)
 
 		for item in event_list:
 			event = {}
