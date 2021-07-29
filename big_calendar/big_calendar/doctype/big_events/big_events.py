@@ -17,7 +17,7 @@ class BigEvents(Document):
 def get_events(park):
 	doc_list = frappe.get_list(
 		"Big Events",
-		fields = ['doc', 'start', 'end', 'title', 'color', 'park_list'],
+		fields = ['doc', 'start', 'end', 'title', 'color', 'park_list', 'park_field'],
 	)
 
 	clean_list = []
@@ -27,7 +27,7 @@ def get_events(park):
 		if park == "":
 			event_list = frappe.get_list(
 				d['doc'],
-				fields = ['name', d['title'], d['start'], d['end']],
+				fields = ['name', d['title'], d['start'], d['end'], d['park_field']],
 			)
 		else:
 			if d.park_list == 1:
@@ -48,7 +48,7 @@ def get_events(park):
 				event_list = frappe.get_list(
 					d['doc'],
 					fields = ['name', d['title'], d['start'], d['end']],
-					filters = {'park': park}
+					filters = {d['park_field']: park}
 				)
 
 		for item in event_list:

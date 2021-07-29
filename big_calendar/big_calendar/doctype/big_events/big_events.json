@@ -9,6 +9,7 @@
   "start",
   "end",
   "color",
+  "park_field",
   "park_list"
  ],
  "fields": [
@@ -47,9 +48,14 @@
    "fieldname": "park_list",
    "fieldtype": "Check",
    "label": "Park List"
+  },
+  {
+   "fieldname": "park_field",
+   "fieldtype": "Select",
+   "label": "Park Field"
   }
  ],
- "modified": "2021-05-24 14:42:05.925644",
+ "modified": "2021-07-29 13:34:19.009571",
  "modified_by": "Administrator",
  "module": "Big Calendar",
  "name": "Big Events",

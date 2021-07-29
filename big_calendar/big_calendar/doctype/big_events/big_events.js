@@ -30,6 +30,7 @@ frappe.ui.form.on('Big Events', {
         frm.set_df_property("title", "options", title_fields)
         frm.set_df_property("start", "options", date_fields)
         frm.set_df_property("end", "options", date_fields)
+        frm.set_df_property("park_field", "options", title_fields)
   		});
     }
   }
