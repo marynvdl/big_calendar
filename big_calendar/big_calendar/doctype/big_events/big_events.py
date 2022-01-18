@@ -17,7 +17,7 @@ class BigEvents(Document):
 def get_events(park):
 	doc_list = frappe.get_list(
 		"Big Events",
-		fields = ['doc', 'start', 'end', 'title', 'color', 'park_list', 'park_field'],
+		fields = ['doc', 'start', 'end', 'title', 'color', 'park_list', 'park_field', 'type_field'],
 	)
 
 	clean_list = []
@@ -27,7 +27,7 @@ def get_events(park):
 		if park == "":
 			event_list = frappe.get_list(
 				d['doc'],
-				fields = ['name', d['title'], d['start'], d['end'], d['park_field']],
+				fields = ['name', d['title'], d['start'], d['end'], d['park_field'], d['type_field']],
 			)
 		else:
 			if d.park_list == 1:
@@ -47,7 +47,7 @@ def get_events(park):
 			else:
 				event_list = frappe.get_list(
 					d['doc'],
-					fields = ['name', d['title'], d['start'], d['end']],
+					fields = ['name', d['title'], d['start'], d['end'], d['type_field']],
 					filters = {d['park_field']: park}
 				)
 
@@ -61,6 +61,10 @@ def get_events(park):
 			event['start'] = item[d.start]
 			event['end'] = item[d.end]
 			event['backgroundColor'] = d.color
+			if d.type_field is not None:
+				event['type'] = item[d.type_field]
+			else:
+				event['type'] = d.doc
 			event['url'] = frappe.utils.get_url() + '/desk#Form/' + d.doc + '/' + item.name
 			clean_list.append(event)
 
@@ -70,4 +74,3 @@ def get_events(park):
 	return sorted_list
 
 
-	#Form/Survey/LWA-svy0102
