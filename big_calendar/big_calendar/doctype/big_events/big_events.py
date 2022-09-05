@@ -65,7 +65,7 @@ def get_events(park):
 				event['type'] = item[d.type_field]
 			else:
 				event['type'] = d.doc
-			event['url'] = frappe.utils.get_url() + '/desk#Form/' + d.doc + '/' + item.name
+			event['url'] = frappe.utils.get_url() + '/app/' + d.doc.lower().replace(' ', '-') + '/' + item.name
 			clean_list.append(event)
 
 

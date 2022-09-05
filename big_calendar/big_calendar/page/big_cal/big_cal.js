@@ -32,6 +32,7 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
 	    fieldname: 'park',
 	    options: 'Company',
 	    change() {
+
 	        if (view_field.get_value() == 'Month'){
 						view_month(park_field.get_value(), type_field.get_value())
 						$('*[data-fieldname="year"]').hide();
@@ -48,6 +49,7 @@ frappe.pages['big_cal'].on_page_load = function(wrapper) {
 	    options: ['Month', 'Year'],
 			reqd: 1,
 	    change() {
+
 				if (view_field.get_value() == 'Month'){
 					view_month(park_field.get_value(), type_field.get_value())
 					$('*[data-fieldname="year"]').hide();
@@ -196,6 +198,8 @@ function filter_month_events(park, type){
 
 
 function view_year(park, year, type){
+
+
 	$('#calendar').remove()
 	$('#year_list').remove()
 	var events = get_events(park)
@@ -206,15 +210,27 @@ function view_year(park, year, type){
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 	for (var m = 0; m < months.length; m++){
-		event_html += '<h4>' + months[m] + '</h4>'
+		event_html += '<h4 class="ellipsis title-text" style="padding-top: 18px;">' + months[m] + '</h4>'
 		for (var i = 0; i < events.length; i++){
 			var event_date = new Date(events[i].start)
-			if (event_date.getFullYear() == year && event_date.getMonth() == m){
-				if (type == 'All'){
-					event_html += '<li style="color:#cfdbba;"><a style="font-size:12px; color:#4a4e42;" href="'+ events[i].url + '"> <b>'+ events[i].start + ': </b>' + events[i].title + '</a> '+'</li>'
-				} else {
-					if(events[i].type == type){
+			if (park==''){
+				if (event_date.getFullYear() == year && event_date.getMonth() == m){
+					if (type == 'All'){
 						event_html += '<li style="color:#cfdbba;"><a style="font-size:12px; color:#4a4e42;" href="'+ events[i].url + '"> <b>'+ events[i].start + ': </b>' + events[i].title + '</a> '+'</li>'
+					} else {
+						if(events[i].type == type){
+							event_html += '<li style="color:#cfdbba;"><a style="font-size:12px; color:#4a4e42;" href="'+ events[i].url + '"> <b>'+ events[i].start + ': </b>' + events[i].title + '</a> '+'</li>'
+						}
+					}
+				}
+			} else {
+				if (event_date.getFullYear() == year && event_date.getMonth() == m) {
+					if (type == 'All') {
+						event_html += '<li style="color:#cfdbba;"><a style="font-size:12px; color:#4a4e42;" href="' + events[i].url + '"> <b>' + events[i].start + ': </b>' + events[i].title + '</a> ' + '</li>'
+					} else {
+						if (events[i].type == type) {
+							event_html += '<li style="color:#cfdbba;"><a style="font-size:12px; color:#4a4e42;" href="' + events[i].url + '"> <b>' + events[i].start + ': </b>' + events[i].title + '</a> ' + '</li>'
+						}
 					}
 				}
 			}
